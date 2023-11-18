@@ -3,9 +3,14 @@
 const titleContainer = document.getElementById("title");
 const imageContainer = document.getElementById("image");
 const narrativeContainer = document.getElementById("narrative");
-const optionATextContainer = document.getElementById("optionAText");
-const optionBTextContainer = document.getElementById("optionBText");
-const optionCTextContainer = document.getElementById("optionCText");
+const optionAText = document.getElementById("optionAText");
+const optionBText = document.getElementById("optionBText");
+const optionCText = document.getElementById("optionCText");
+const buttonA = document.getElementById("buttonA");
+const buttonB = document.getElementById("buttonB");
+const buttonC = document.getElementById("buttonC");
+let approach = '';
+
 
 // Dummy Content
 
@@ -15,19 +20,30 @@ const dummyOptionB = "Have a coffee";
 const dummyOptionC = "Shoot him";
 
 //API Key
-	let myKey = '';
-	
-	//Form
-	const apiKeyForm = document.getElementById('apiKey');
-	const apiKeyInput = document.getElementById('inputAPIKey');
+let myKey = '';
 
-	apiKeyForm.addEventListener('submit', function (event) {
-  	event.preventDefault();
-		console.log("My Key: " + myKey);
-		myKey = apiKeyInput.value;
-		apiKeyInput.value = 'Mine Now';
-		console.log("My Key: " + myKey);
-	});
+// Event Listeners
+
+buttonA.addEventListener('click', function() {
+    changeApproach(optionAText.innerHTML);
+});
+buttonB.addEventListener('click', function() {
+    changeApproach(optionBText.innerHTML);
+});
+buttonC.addEventListener('click', function() {
+    changeApproach(optionCText.innerHTML);
+});
+//Form
+const apiKeyForm = document.getElementById('apiKey');
+const apiKeyInput = document.getElementById('inputAPIKey');
+
+apiKeyForm.addEventListener('submit', function (event) {
+event.preventDefault();
+    console.log("My Key: " + myKey);
+    myKey = apiKeyInput.value;
+    apiKeyInput.value = 'Mine Now';
+    console.log("My Key: " + myKey);
+});
 
 // Functions
 
@@ -35,3 +51,7 @@ function displayNarrative () {
     narrativeContainer.textContent = dummyNarrative;
 }
 
+function changeApproach(chosenText) {
+    approach = chosenText;
+    console.log(approach);
+}
