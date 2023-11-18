@@ -35,3 +35,59 @@ function displayNarrative () {
     narrativeContainer.textContent = dummyNarrative;
 }
 
+//API Objects
+	// POST https://api.openai.com/v1/chat/completions
+	function OpenaiFetchAPI() {
+		console.log("Calling GPT3");
+		let url = "https://api.openai.com/v1/engines/davinci/completions";
+		let bearer = 'Bearer ' + YOUR_TOKEN;
+		fetch(url, {
+				method: 'POST',
+				headers: {
+						'Authorization': `Bearer ${myKey}`,
+						'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+						"prompt": "Once upon a time",
+						"max_tokens": 5,
+						"temperature": 1,
+						"top_p": 1,
+						"n": 1,
+						"stream": false,
+						"logprobs": null,
+						"stop": "\n"
+				})
+		}).then(response => {
+				return response.json()
+		}).then(data=>{
+				console.log(data)
+				console.log(typeof data)
+				console.log(Object.keys(data))
+				console.log(data['choices'][0].text)
+		})
+				.catch(error => {
+						console.log('Something bad happened ' + error)
+				});
+}
+
+	const responseTemplate = {
+		// https://platform.openai.com/docs/api-reference/chat/object
+		"id": "chatcmpl-123",
+		"object": "chat.completion",
+		"created": 1677652288,
+		"model": "gpt-3.5-turbo-0613",
+		"system_fingerprint": "fp_44709d6fcb",
+		"choices": [{
+			"index": 0,
+			"message": {
+				"role": "assistant",
+				"content": "\n\nHello there, how may I assist you today?",
+			},
+			"finish_reason": "stop"
+		}],
+		"usage": {
+			"prompt_tokens": 9,
+			"completion_tokens": 12,
+			"total_tokens": 21
+		}
+	}
