@@ -5,9 +5,14 @@ import { generateBeat } from "./api";
 const titleContainer = document.getElementById("title");
 const imageContainer = document.getElementById("image");
 const narrativeContainer = document.getElementById("narrative");
-const optionATextContainer = document.getElementById("optionAText");
-const optionBTextContainer = document.getElementById("optionBText");
-const optionCTextContainer = document.getElementById("optionCText");
+const optionAText = document.getElementById("optionAText");
+const optionBText = document.getElementById("optionBText");
+const optionCText = document.getElementById("optionCText");
+const buttonA = document.getElementById("buttonA");
+const buttonB = document.getElementById("buttonB");
+const buttonC = document.getElementById("buttonC");
+let approach = '';
+
 
 // Dummy Content
 const dummyInit = "Your tale has not been told..."
@@ -24,6 +29,18 @@ let optionC = dummyOptionC;
 
 //API Key
 let myKey = '';
+
+// Event Listeners
+
+buttonA.addEventListener('click', function() {
+    changeApproach(optionAText.innerHTML);
+});
+buttonB.addEventListener('click', function() {
+    changeApproach(optionBText.innerHTML);
+});
+buttonC.addEventListener('click', function() {
+    changeApproach(optionCText.innerHTML);
+});
 
 //Form
 const apiKeyForm = document.getElementById('apiKey');
@@ -42,6 +59,10 @@ function displayNarrative () {
 	narrativeContainer.textContent = dummyNarrative;
 }
 
+function changeApproach(chosenText) {
+    approach = chosenText;
+    console.log(approach);
+}
 //Initialise Page
 function displayStartup() {
 	narrativeContainer.textContent = dummyInit;
