@@ -8,9 +8,11 @@
     <title>Choose your own adventure with Phoebe & Jason</title>
   </head>
   <body>
+    <header>
+      <h1>Story Generator</h1>
+    </header>
+    
     <main>
-      <h1>A Story!</h1>
-      
       <form id="apiKey">
           <label for="inputAPIKey">API KEY PLEASE TRUST ME</label>
           <br>
@@ -26,17 +28,19 @@
       </section>
 
       <section id="story">
-        <div id="narrative"></div>
-      </section>
+        <button onclick="displayNarrative()">Start Story</button>
 
-      <section id="options">
+        <div id="narrative"></div>
+
         <div id="options">
-          <button id="buttonA" onclick="displayNarrative()">
+          <button id="buttonA">
             <div id="optionAText">A</div>
           </button>
+
           <button id="buttonB" onclick="displayNarrative()">
             <div id="optionBText">B</div>
           </button>
+          
           <button id="buttonC" onclick="displayNarrative()">
             <div id="optionCText">C</div>
           </button>
